@@ -8,6 +8,8 @@ import GlobalLocation from "../pages/GlobalLocation/GlobalLocation";
 import NewsFeed from "../pages/NewsFeed/NewsFeed";
 import Contact from "../pages/Contact/Contact";
 import ProductServices from "../pages/ProductServices/ProductServices";
+import PrivacyPolicy from "../pages/PrivacyPolicy/PrivacyPolicy";
+import CookiePolicy from "../pages/CookiePolicy/CookiePolicy";
 
 export const router = createBrowserRouter([
   {
@@ -42,6 +44,14 @@ export const router = createBrowserRouter([
       {
         path: "contact",
         Component: Contact,
+      },
+      {
+        path: "privacy-policy",
+        Component: PrivacyPolicy,
+      },
+      {
+        path: "cookie-policy",
+        Component: CookiePolicy,
       },
     ],
   },

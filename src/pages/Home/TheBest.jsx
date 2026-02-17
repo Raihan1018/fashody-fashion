@@ -40,11 +40,7 @@ const TheBest = () => {
           variants={itemVariants}
           className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[1.05] tracking-tight text-slate-900 border-l-8 border-green-600 pl-6"
         >
-          The Best is{" "}
-          <span className="italic font-light text-slate-400 font-serif">
-            {" "}
-            yet{" "}
-          </span>{" "}
+          The Best is <span className=" text-green-500 "> yet </span>
           to Come
         </motion.h1>
 

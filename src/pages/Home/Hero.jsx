@@ -62,7 +62,7 @@ const Hero = () => {
   ];
 
   return (
-    <div className="relative overflow-hidden  py-12 md:py-20 lg:py-28 rounded-[2rem] md:rounded-[3rem]  my-4">
+    <div className="relative overflow-hidden my-4">
       {/* Background Blobs with subtle floating animation */}
       <motion.div
         animate={{ scale: [1, 1.1, 1], x: [0, 20, 0] }}
