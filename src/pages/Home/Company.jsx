@@ -2,10 +2,12 @@ import React from "react";
 import Marquee from "react-fast-marquee";
 
 // Renamed imports
-import te from "../../assets/Company/te.png";
+import te from "../../assets/Company/TE.png";
 import img8_2 from "../../assets/Company/8_2.png";
 import img9_1 from "../../assets/Company/9_1.png";
-import zdhc from "../../assets/Company/zdhc.png";
+import zdhc from "../../assets/Company/ZDHC.png";
+import oeko from "../../assets/Company/OEKO.png";
+
 
 const Company = () => {
   const logos = [te, img8_2, img9_1, zdhc];
