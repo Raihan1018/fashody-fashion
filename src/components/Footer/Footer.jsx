@@ -88,7 +88,7 @@ const Footer = () => {
               </Link>
             </nav>
 
-            {/* Column 3 */}
+            {/* Column 3  */}
             <nav className="flex flex-col space-y-3">
               <h6 className="text-white font-bold uppercase tracking-wider text-xs mb-2">
                 Support
