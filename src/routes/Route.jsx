@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Layout from "../Layout/Layout";
 import Error from "../Error/Error";
 import Home from "../pages/Home/Home";
-import OurGroups from "../pages/ourGroups/ourGroups";
+import OurGroups from "../pages/OurGroups/OurGroups";
 import OurPromise from "../pages/ourPromise/ourPromise";
 import GlobalLocation from "../pages/globalLocation/globalLocation";
 import NewsFeed from "../pages/NewsFeed/NewsFeed";
