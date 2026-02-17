@@ -3,27 +3,28 @@ import { Link } from "react-router-dom";
 import { FaIndustry, FaGlobe, FaUsersGear, FaHeadset } from "react-icons/fa6";
 import { FaRegPaperPlane } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { containerVariants, itemVariants } from "../../Animation/Motion";
 
 const Hero = () => {
   const currentYear = new Date().getFullYear();
 
   // Animation variants for staggered children
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.2, delayChildren: 0.1 },
-    },
-  };
+  //   const containerVariants = {
+  //     hidden: { opacity: 0 },
+  //     visible: {
+  //       opacity: 1,
+  //       transition: { staggerChildren: 0.2, delayChildren: 0.1 },
+  //     },
+  //   };
 
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 0.6, ease: "easeOut" },
-    },
-  };
+  //   const itemVariants = {
+  //     hidden: { y: 20, opacity: 0 },
+  //     visible: {
+  //       y: 0,
+  //       opacity: 1,
+  //       transition: { duration: 0.6, ease: "easeOut" },
+  //     },
+  //   };
 
   const stats = [
     {
@@ -61,7 +62,7 @@ const Hero = () => {
   ];
 
   return (
-    <div className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-green-50 py-12 md:py-20 lg:py-28 rounded-[2rem] md:rounded-[3rem] mx-2 md:mx-6 my-4">
+    <div className="relative overflow-hidden  py-12 md:py-20 lg:py-28 rounded-[2rem] md:rounded-[3rem]  my-4">
       {/* Background Blobs with subtle floating animation */}
       <motion.div
         animate={{ scale: [1, 1.1, 1], x: [0, 20, 0] }}
@@ -109,6 +110,14 @@ const Hero = () => {
             global sourcing strategies, combined with compliance excellence and
             intuitive customer service.
           </motion.p>
+          <motion.p
+            variants={itemVariants}
+            className="text-base md:text-lg lg:text-xl text-slate-600 max-w-xl leading-relaxed"
+          >
+            We strive to always bring newness and innovation to our work,
+            offering an extensive multi-category product range, manufactured in
+            over 100 fully compliant partner factories.
+          </motion.p>
 
           <motion.div
             variants={itemVariants}
@@ -137,13 +146,11 @@ const Hero = () => {
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
-             
             >
               <FaRegPaperPlane className="text-6xl md:text-8xl transition-colors duration-300 group-hover:text-green-500/40" />
             </motion.div>
 
             {/* Optional "Wind" Lines that appear on hover */}
-           
           </motion.div>
         </motion.div>
 

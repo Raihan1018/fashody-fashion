@@ -6,7 +6,7 @@ import Footer from "../components/Footer/Footer";
 const Layout = () => {
   return (
     // min-h-screen ensures the footer stays at the bottom on short pages
-    <div className="flex flex-col min-h-screen px-1 md:px-3 lg:px-5">
+    <div className="flex flex-col min-h-screen  bg-gradient-to-br from-slate-100 via-white to-green-100 rounded-[2rem] md:rounded-[3rem]  my-4 ">
       <Header />
 
       {/* Main content area constrained to your max-width */}
