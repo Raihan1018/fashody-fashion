@@ -2,7 +2,7 @@ import React from "react";
 import Marquee from "react-fast-marquee";
 
 // Renamed imports
-import te from "../../assets/company/te.png";
+import te from "../../assets/Company/te.png";
 import img8_2 from "../../assets/Company/8_2.png";
 import img9_1 from "../../assets/Company/9_1.png";
 import zdhc from "../../assets/Company/zdhc.png";
