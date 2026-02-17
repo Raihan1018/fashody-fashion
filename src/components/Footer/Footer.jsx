@@ -113,7 +113,7 @@ const Footer = () => {
               </Link>
             </nav>
 
-            {/* Column 4 (Row 2, Col 1) */}
+            {/* Column 4. (Row 2, Col 1) */}
             <nav className="flex flex-col space-y-3">
               <h6 className="text-white font-bold uppercase tracking-wider text-xs mb-2">
                 Product Types
