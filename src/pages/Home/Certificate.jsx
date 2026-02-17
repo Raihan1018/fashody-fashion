@@ -1,8 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
-import Global from "../../assets/certificate/Global.png";
-import gots from "../../assets/certificate/gots.png";
-import zdhc from "../../assets/certificate/zdhc.png";
+import Global from "../../assets/Certificate/Global.png";
+import gots from "../../assets/Certificate/gots.png";
+import zdhc from "../../assets/Certificate/zdhc.png";
 
 const Certificate = () => {
   const certificates = [
