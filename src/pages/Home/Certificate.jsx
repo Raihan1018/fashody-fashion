@@ -10,6 +10,7 @@ const Certificate = () => {
     { src: zdhc, alt: "ZDHC Certificate" },
   ];
 
+  
   // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
