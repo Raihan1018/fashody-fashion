@@ -1,4 +1,3 @@
-import React from "react";
 import { motion } from "framer-motion";
 
 const AboutFF = () => {
@@ -61,20 +60,23 @@ const AboutFF = () => {
         {/* First Paragraph: High Emphasis */}
         <motion.p
           variants={itemVariants}
-          className="text-xl md:text-2xl text-base-content/80 font-semibold leading-relaxed mb-8"
+          className="text-xl md:text-2xl text-base-content/80  leading-relaxed mb-8"
         >
-          We believe in doing things right. As a trusted partner for many global
-          brands, we consistently champion ethics and transparency .
+          Creating positive impact has always been at the heart of our culture
+          as a company. Our strategic approach really began in 2000, when we
+          rolled out our Social and Ethical Compliance blueprint across our
+          global supply base.
         </motion.p>
 
         {/* Second Paragraph: Standard Text */}
         <motion.p
           variants={itemVariants}
-          className="text-lg md:text-xl text-base-content/60 leading-relaxed max-w-2xl mx-auto"
+          className="text-xl md:text-2xl text-base-content/80 leading-relaxed mb-8"
         >
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto
-          corrupti similique fuga et dolor possimus nobis suscipit animi officia
-          molestiae?
+          We are committed to working with leading industry eco-communities to
+          further develop our preferred fibre portfolio, and improving industry
+          practices to bring positive environmental and societal changes for our
+          communities.
         </motion.p>
 
         {/* Optional Action Hint */}

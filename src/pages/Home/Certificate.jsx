@@ -10,7 +10,6 @@ const Certificate = () => {
     { src: zdhc, alt: "ZDHC Certificate" },
   ];
 
-  
   // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -27,7 +26,7 @@ const Certificate = () => {
 
   return (
     <section className="py-16 px-4">
-      <div className="max-w-6xl mx-auto bg-[#243B5C] rounded-[2rem] md:rounded-[3rem] p-8 md:p-16 shadow-2xl overflow-hidden relative">
+      <div className="max-w-full mx-auto bg-[#243B5C] rounded-[2rem] md:rounded-[3rem] p-8 md:p-16 shadow-2xl overflow-hidden relative">
         {/* Decorative background glow */}
         <div className="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 bg-blue-400/10 rounded-full blur-3xl" />
 

@@ -4,6 +4,7 @@ import GlobalNetwork from "./GlobalNetwork";
 import Founder from "./Founder";
 import MeetOurTeam from "./MeetOurTeam";
 import History from "./History";
+import Company from "../Home/Company";
 
 const OurGroups = () => {
   return (
@@ -13,6 +14,7 @@ const OurGroups = () => {
       <Founder />
       <MeetOurTeam />
       <History/>
+      <Company/>
     </div>
   );
 };

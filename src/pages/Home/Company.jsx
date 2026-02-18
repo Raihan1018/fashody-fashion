@@ -1,56 +1,47 @@
-import React from "react";
-import Marquee from "react-fast-marquee";
+import { motion } from "framer-motion";
 
-// Renamed imports
-import te from "../../assets/Company/TE.png";
-import img8_2 from "../../assets/Company/8_2.png";
-import img9_1 from "../../assets/Company/9_1.png";
-import zdhc from "../../assets/Company/ZDHC.png";
-import oeko from "../../assets/Company/OEKO.png";
-
-
+import Global from "../../assets/Company/Global.png";
+import GOTS from "../../assets/Company/GOTS.png";
+import TextileExchange from "../../assets/Company/TextileExchange.png";
+import ISO from "../../assets/Company/ISO.png";
+import Higg from "../../assets/Company/Higg.png";
 const Company = () => {
-  const logos = [te, img8_2, img9_1, zdhc];
+  const logos = [Global, GOTS, TextileExchange, ISO, Higg];
+
+  // We double the array to ensure a seamless loop
+  const duplicatedLogos = [...logos, ...logos];
 
   return (
-    <div className="py-12 mb-10 bg-[#1B3252] max-w-6xl mx-auto rounded-[2rem] md:rounded-[3rem] p-8 md:p-16 shadow-2xl overflow-hidden relative">
-      <div className="max-w-screen-xl mx-auto px-4 mb-10">
-        <div className="flex items-center gap-6">
-          <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent to-white/20"></div>
-          <p className="text-slate-400  font-semibold uppercase tracking-[0.3em]  md:text-2xl lg:text-3xl">
-            Global Partners
-          </p>
-          <div className="h-[1px] flex-1 bg-gradient-to-l from-transparent to-white/20"></div>
-        </div>
-      </div>
+    <div className="max-w-full mx-auto bg-[#243B5C] rounded-[2rem] md:rounded-[3rem] p-8 md:p-16 shadow-2xl overflow-hidden relative mb-5">
+      {/* Optional: Gradient Overlays for a "Fade-out" edge effect */}
+      <div className="absolute inset-y-0 left-0 w-20 md:w-40 bg-gradient-to-r from-[#162A45] to-transparent z-10"></div>
+      <div className="absolute inset-y-0 right-0 w-20 md:w-40 bg-gradient-to-l from-[#162A45] to-transparent z-10"></div>
 
-      <div className="relative w-full">
-        <Marquee
-          gradient={false}
-          speed={80}
-          pauseOnHover={false}
-          className="flex items-center"
+      <div className="flex">
+        <motion.div
+          className="flex flex-none gap-16 md:gap-32 items-center"
+          animate={{
+            x: ["0%", "-50%"], // Move half of the duplicated list
+          }}
+          transition={{
+            ease: "linear",
+            duration: 20,
+            repeat: Infinity,
+          }}
         >
-          {/* Mapping logos - ensured enough clones for a smooth loop with larger sizes */}
-          {[...logos, ...logos].map((logo, index) => (
+          {duplicatedLogos.map((logo, index) => (
             <div
               key={index}
-              // Increased Width (w-40 to w-72) and Height (h-20 to h-24)
-              className="flex items-center justify-center mx-12 md:mx-20 w-40 md:w-72 h-20 md:h-24"
+              className="flex-none w-32 md:w-48 h-20 md:h-28 flex items-center justify-center grayscale hover:grayscale-0 brightness-200 transition-all duration-500"
             >
               <img
                 src={logo}
-                alt={`Partner ${index}`}
-                // Scaled up the image scale and maintained the clean white look
-                className="max-w-full w-full max-h-full object-contain brightness-0 invert"
+                alt={`Certification ${index}`}
+                className="max-w-full max-h-full object-contain pointer-events-none"
               />
             </div>
           ))}
-        </Marquee>
-
-        {/* Wider gradients to accommodate the larger logos sliding in */}
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-32 md:w-72 bg-gradient-to-r from-[#1B3252] via-[#1B3252]/60 to-transparent z-10"></div>
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-32 md:w-72 bg-gradient-to-l from-[#1B3252] via-[#1B3252]/60 to-transparent z-10"></div>
+        </motion.div>
       </div>
     </div>
   );
