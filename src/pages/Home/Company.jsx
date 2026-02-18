@@ -17,7 +17,7 @@ const Company = () => {
       <div className="max-w-screen-xl mx-auto px-4 mb-10">
         <div className="flex items-center gap-6">
           <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent to-white/20"></div>
-          <p className="text-slate-400  font-semibold uppercase tracking-[0.3em] text-xl md:text-2xl lg:text-3xl">
+          <p className="text-slate-400  font-semibold uppercase tracking-[0.3em]  md:text-2xl lg:text-3xl">
             Global Partners
           </p>
           <div className="h-[1px] flex-1 bg-gradient-to-l from-transparent to-white/20"></div>
@@ -42,7 +42,7 @@ const Company = () => {
                 src={logo}
                 alt={`Partner ${index}`}
                 // Scaled up the image scale and maintained the clean white look
-                className="max-w-full max-h-full object-contain brightness-0 invert opacity-90 hover:opacity-100 transition-opacity duration-300"
+                className="max-w-full w-full max-h-full object-contain brightness-0 invert"
               />
             </div>
           ))}
