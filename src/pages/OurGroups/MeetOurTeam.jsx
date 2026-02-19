@@ -44,7 +44,7 @@ const teamMembers = [
 
 const MeetOurTeam = () => {
   return (
-    <section className="py-20 bg-[#F8FAFC] overflow-hidden">
+    <section id="meetOurTeam" className="py-20 bg-[#F8FAFC] overflow-hidden">
       <div className="container mx-auto px-4 relative">
         {/* Header Section */}
         <div className="text-center mb-10">

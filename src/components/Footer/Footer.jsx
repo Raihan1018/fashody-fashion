@@ -75,13 +75,13 @@ const Footer = () => {
                 Our Promise
               </Link>
               <Link
-                to="#"
+                to="/our-groups#meetOurTeam"
                 className="hover:text-green-400 transition-colors text-sm"
               >
                 Meet Our Team
               </Link>
               <Link
-                to="#"
+                to="/our-groups#history"
                 className="hover:text-green-400 transition-colors text-sm"
               >
                 History

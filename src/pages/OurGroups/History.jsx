@@ -58,10 +58,10 @@ const History = () => {
   const [selectedItem, setSelectedItem] = useState(null);
 
   return (
-    <section className="bg-slate-50 py-20 px-6">
+    <section id="history" className="bg-slate-50 py-20 px-6">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-4xl md:text-5xl font-black text-[#162A45] text-center mb-16">
-          History of ZXY
+          History of Fashody Fashion
         </h2>
 
         {/* Grid Layout */}
