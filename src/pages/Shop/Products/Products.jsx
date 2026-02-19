@@ -14,7 +14,6 @@ const Products = () => {
         setLoading(false);
       })
       .catch((err) => console.error("Error loading products:", err));
-      
   }, []);
 
   if (loading) {
