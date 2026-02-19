@@ -7,9 +7,10 @@ import OurPromise from "../pages/OurPromise/OurPromise";
 import GlobalLocation from "../pages/GlobalLocation/GlobalLocation";
 import NewsFeed from "../pages/NewsFeed/NewsFeed";
 import Contact from "../pages/Contact/Contact";
-import ProductServices from "../pages/ProductServices/ProductServices";
 import PrivacyPolicy from "../pages/PrivacyPolicy/PrivacyPolicy";
 import CookiePolicy from "../pages/CookiePolicy/CookiePolicy";
+import Products from "../pages/Shop/Products/Products";
+import ProductDetails from "../pages/Shop/ProductDetails/ProductDetails";
 
 export const router = createBrowserRouter([
   {
@@ -26,8 +27,16 @@ export const router = createBrowserRouter([
         Component: OurGroups,
       },
       {
-        path: "product-services",
-        Component: ProductServices,
+        path: "products",
+        Component: Products,
+      },
+      {
+        path: "product-details,",
+        Component: ProductDetails,
+      },
+      {
+        path: "product-details/:id",
+        Component: ProductDetails,
       },
       {
         path: "our-promise",
