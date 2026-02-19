@@ -1,7 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
-import { FaHeart, FaLinkedin } from "react-icons/fa";
+import { FaHeart, FaLinkedin, FaBars, FaTimes } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/logo.png";
+// import { navLinks } from "../../data/navigation"; // Import from external file
+import { CustomNavLink } from "../../CustomNavLink/CustomNavLink";
 
 const Header = () => {
   const [desktopOpen, setDesktopOpen] = useState(false);
@@ -9,288 +11,155 @@ const Header = () => {
   const dropdownRef = useRef(null);
   const timeoutRef = useRef(null);
 
-  const activeLink = "underline text-green-500 font-semibold";
-  const normalLink = "hover:text-green-500 transition-colors";
+  // --- Helpers ---
+  const activeLink = "text-green-600 font-bold border-b-2 border-green-600";
+  const normalLink =
+    "text-gray-700 hover:text-green-500 transition-all duration-300";
 
-  // --- Logic remains unchanged ---
+  // Groups submenu items by their "group" key automatically
+  const groupedSubmenu = (submenu) => {
+    return submenu.reduce((acc, item) => {
+      (acc[item.group] = acc[item.group] || []).push(item);
+      return acc;
+    }, {});
+  };
+
   const handleMouseEnter = () => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
     setDesktopOpen(true);
   };
 
   const handleMouseLeave = () => {
-    timeoutRef.current = setTimeout(() => {
-      setDesktopOpen(false);
-    }, 150);
-  };
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setDesktopOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
-  const closeAll = () => {
-    setDesktopOpen(false);
-    setMobileProductOpen(false);
+    timeoutRef.current = setTimeout(() => setDesktopOpen(false), 200);
   };
 
   return (
-    <div className="sticky top-0 z-[100] w-full bg-base-100/90 backdrop-blur-md border-b border-base-200">
-      <div className="navbar container mx-auto max-w-screen-xl px-4 flex justify-between items-center">
-        {/* 1. LEFT SIDE: Toggle & Logo (Visible on all) */}
-        <div className="flex items-center gap-1 md:gap-2">
-          <div className="dropdown">
-            <div
-              tabIndex={0}
-              role="button"
-              className="btn btn-ghost lg:hidden p-1 min-h-0 h-10 w-10"
-            >
-              <span className="text-2xl">☰</span>
-            </div>
+    <nav className="sticky top-0 z-[100] w-full bg-white/90 backdrop-blur-lg border-b border-gray-100">
+      <div className="navbar container mx-auto max-w-screen-xl px-4 flex justify-between items-center h-20">
+        {/* 1. LOGO & MOBILE DRIVE */}
+        <div className="flex items-center gap-4">
+          <div className="dropdown lg:hidden">
+            <label tabIndex={0} className="btn btn-ghost btn-circle">
+              <FaBars className="text-xl" />
+            </label>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box mt-3 w-64 p-2 shadow z-[1]"
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-4 shadow-xl bg-white rounded-box w-72 border border-gray-100"
             >
-              <li>
-                <NavLink to="/our-groups" onClick={closeAll}>
-                  Our Groups
-                </NavLink>
-              </li>
-              <li>
-                <div className="flex justify-between items-center w-full">
-                  <NavLink
-                    to="/product-services"
-                    onClick={closeAll}
-                    className="flex-1"
-                  >
-                    Product & Services
-                  </NavLink>
-                  <button
-                    onClick={() => setMobileProductOpen(!mobileProductOpen)}
-                    className="p-2"
-                  >
-                    <svg
-                      className={`w-4 h-4 transition-transform ${mobileProductOpen ? "rotate-180" : ""}`}
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </button>
-                </div>
-                {mobileProductOpen && (
-                  <ul className="bg-base-200 rounded-lg p-2 mt-2">
-                    <li>
-                      <NavLink to="/web" onClick={closeAll}>
-                        Web Development
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink to="/app" onClick={closeAll}>
-                        App Development
-                      </NavLink>
-                    </li>
-                  </ul>
-                )}
-              </li>
-              <li>
-                <NavLink to="/global-location" onClick={closeAll}>
-                  Global Location
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/newsfeed" onClick={closeAll}>
-                  News Feed
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/contact" onClick={closeAll}>
-                  Contact
-                </NavLink>
-              </li>
+              {CustomNavLink.map((link) => (
+                <li key={link.path} className="py-1">
+                  {link.submenu ? (
+                    <details>
+                      <summary className="font-semibold text-lg">
+                        {link.name}
+                      </summary>
+                      <ul className="pl-4 mt-2 space-y-2 border-l-2 border-green-100">
+                        {link.submenu.map((sub) => (
+                          <li key={sub.path}>
+                            <NavLink to={sub.path}>{sub.name}</NavLink>
+                          </li>
+                        ))}
+                      </ul>
+                    </details>
+                  ) : (
+                    <NavLink to={link.path} className="text-lg">
+                      {link.name}
+                    </NavLink>
+                  )}
+                </li>
+              ))}
             </ul>
           </div>
-
-          <Link to="/" className="btn btn-ghost p-0 hover:bg-transparent">
-            <img className="w-14 md:w-20" src={logo} alt="Fashody Fashion" />
+          <Link to="/" className="transition-transform hover:scale-105">
+            <img className="w-16 md:w-20" src={logo} alt="Fashody Logo" />
           </Link>
         </div>
 
-        {/* 2. CENTER: Desktop Menu (ONLY visible on LG and up) */}
+        {/* 2. DESKTOP NAVIGATION (SMART MEGAMENU) */}
         <div className="hidden lg:flex flex-1 justify-center">
-          <ul className="menu menu-horizontal px-1 gap-2">
-            <li>
-              <NavLink
-                to="/our-groups"
-                className={({ isActive }) =>
-                  isActive ? activeLink : normalLink
-                }
+          <ul className="flex items-center gap-8 uppercase text-xs tracking-widest font-medium">
+            {CustomNavLink.map((link) => (
+              <li
+                key={link.path}
+                className="relative py-4"
+                onMouseEnter={link.submenu ? handleMouseEnter : null}
+                onMouseLeave={link.submenu ? handleMouseLeave : null}
               >
-                Our Groups
-              </NavLink>
-            </li>
-
-            <li
-              ref={dropdownRef}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-              className="relative"
-            >
-              <NavLink
-                to="/product-services"
-                className={({ isActive }) =>
-                  `flex items-center gap-1 px-3 py-2 rounded-md ${desktopOpen || isActive ? "bg-base-200" : ""} ${isActive ? "text-green-500 font-bold" : ""}`
-                }
-              >
-                Product & Services
-                <svg
-                  className={`w-3 h-3 transition-transform ${desktopOpen ? "rotate-180" : ""}`}
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  viewBox="0 0 24 24"
+                <NavLink
+                  to={link.path}
+                  className={({ isActive }) =>
+                    `pb-1 ${isActive ? activeLink : normalLink}`
+                  }
                 >
-                  <path d="M19 9l-7 7-7-7" />
-                </svg>
-              </NavLink>
+                  {link.name}
+                </NavLink>
 
-              {desktopOpen && (
-                <div className="absolute left-0 top-full pt-2 w-[450px]">
-                  <div className="card bg-base-100 shadow-2xl border border-base-200 p-4 grid grid-cols-2 gap-4">
-                    <div>
-                      <h3 className="font-bold border-b mb-2 pb-1">
-                        Development
-                      </h3>
-                      <ul className="text-sm space-y-1">
-                        <li>
-                          <NavLink
-                            to="/web"
-                            onClick={closeAll}
-                            className="hover:text-green-500 block p-1"
-                          >
-                            Web Development
-                          </NavLink>
-                        </li>
-                        <li>
-                          <NavLink
-                            to="/app"
-                            onClick={closeAll}
-                            className="hover:text-green-500 block p-1"
-                          >
-                            App Development
-                          </NavLink>
-                        </li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h3 className="font-bold border-b mb-2 pb-1">
-                        Solutions
-                      </h3>
-                      <ul className="text-sm space-y-1">
-                        <li>
-                          <NavLink
-                            to="/ai"
-                            onClick={closeAll}
-                            className="hover:text-green-500 block p-1"
-                          >
-                            AI & ML
-                          </NavLink>
-                        </li>
-                        <li>
-                          <NavLink
-                            to="/cloud"
-                            onClick={closeAll}
-                            className="hover:text-green-500 block p-1"
-                          >
-                            Cloud Services
-                          </NavLink>
-                        </li>
-                      </ul>
+                {/* DYNAMIC MEGAMENU */}
+                {link.submenu && desktopOpen && (
+                  <div className="absolute left-1/2 -translate-x-1/2 top-full pt-2 w-[600px] animate-in fade-in slide-in-from-top-2 duration-300">
+                    <div className="bg-white shadow-2xl border border-gray-100 rounded-xl p-8 grid grid-cols-3 gap-8">
+                      {Object.entries(groupedSubmenu(link.submenu)).map(
+                        ([groupName, items]) => (
+                          <div key={groupName}>
+                            <h3 className="text-green-600 font-bold text-[10px] mb-4 border-b pb-2 tracking-tighter uppercase">
+                              {groupName}
+                            </h3>
+                            <ul className="space-y-3">
+                              {items.map((sub) => (
+                                <li key={sub.path}>
+                                  <Link
+                                    to={sub.path}
+                                    className="text-gray-500 hover:text-black hover:translate-x-1 transition-all block normal-case text-sm"
+                                  >
+                                    {sub.name}
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ),
+                      )}
                     </div>
                   </div>
-                </div>
-              )}
-            </li>
-
-            <li>
-              <NavLink
-                to="/our-promise"
-                className={({ isActive }) =>
-                  isActive ? activeLink : normalLink
-                }
-              >
-                Our Promise
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/global-location"
-                className={({ isActive }) =>
-                  isActive ? activeLink : normalLink
-                }
-              >
-                Global Location
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/newsfeed"
-                className={({ isActive }) =>
-                  isActive ? activeLink : normalLink
-                }
-              >
-                News Feed
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/contact"
-                className={({ isActive }) =>
-                  isActive ? activeLink : normalLink
-                }
-              >
-                Contact
-              </NavLink>
-            </li>
+                )}
+              </li>
+            ))}
           </ul>
         </div>
 
-        {/* 3. RIGHT SIDE: Search & Icons (Search/Heart on all, LinkedIn on LG only) */}
-        <div className="flex items-center gap-2 md:gap-4">
-          <label className="input input-sm input-bordered flex items-center gap-2 w-28 sm:w-32 md:w-44">
+        {/* 3. UTILITIES */}
+        <div className="flex items-center gap-5">
+          <div className="hidden md:flex items-center bg-gray-100 px-3 py-1.5 rounded-full border border-transparent focus-within:border-green-300 focus-within:bg-white transition-all">
             <input
               type="text"
-              className="grow focus:outline-none text-xs md:text-sm"
-              placeholder="Search"
+              placeholder="Search Style..."
+              className="bg-transparent outline-none text-sm w-32 focus:w-48 transition-all"
             />
             <svg
-              className="h-4 w-4 opacity-70"
-              fill="currentColor"
-              viewBox="0 0 16 16"
+              className="w-4 h-4 text-gray-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
             >
-              <path d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z" />
+              <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
-          </label>
-
-          <FaHeart className="cursor-pointer hover:text-red-500 transition-colors text-lg md:text-xl shrink-0" />
-
+          </div>
+          <div className="relative cursor-pointer group">
+            <FaHeart className="text-xl text-gray-700 group-hover:text-red-500 transition-colors" />
+            <span className="absolute -top-2 -right-2 bg-green-500 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
+              0
+            </span>
+          </div>
           <Link
-            to={"https://www.linkedin.com"}
+            to="https://linkedin.com"
             target="_blank"
-            className="hidden lg:block shrink-0"
+            className="hidden sm:block"
           >
-            <FaLinkedin className="cursor-pointer hover:text-blue-600 transition-colors text-xl" />
+            <FaLinkedin className="text-xl text-gray-400 hover:text-blue-600 transition-colors" />
           </Link>
         </div>
       </div>
-    </div>
+    </nav>
   );
 };
 
