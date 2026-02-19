@@ -9,12 +9,14 @@ import Company from "../Home/Company";
 const OurGroups = () => {
   return (
     <div>
+      <title>Our Group</title>
       <AboutFF />
+
       <GlobalNetwork />
       <Founder />
       <MeetOurTeam />
-      <History/>
-      <Company/>
+      <History />
+      <Company />
     </div>
   );
 };

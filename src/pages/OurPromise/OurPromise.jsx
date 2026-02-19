@@ -8,11 +8,12 @@ import Company from "../Home/Company";
 const OurPromise = () => {
   return (
     <div>
+      <title>Our Promise</title>
       <OurValues />
       <OurVision />
       <OurProgress />
-      <Mission2030/>
-      <Company/>
+      <Mission2030 />
+      <Company />
     </div>
   );
 };

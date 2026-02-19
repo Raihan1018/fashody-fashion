@@ -76,6 +76,8 @@ const GlobalLocations = () => {
 
   return (
     <section className="py-20 relative overflow-hidden min-h-screen">
+      {/* page title */}
+      <title>Global Locations</title>
       <div className="container mx-auto px-4 relative z-10">
         <h2 className="text-4xl md:text-5xl font-black text-center text-[#162A45] mb-12">
           Global Locations
@@ -214,7 +216,7 @@ const GlobalLocations = () => {
           </Swiper>
         </div>
       </div>
-      <Company/>
+      <Company />
     </section>
   );
 };
